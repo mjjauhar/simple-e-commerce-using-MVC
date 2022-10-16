@@ -2,8 +2,10 @@ const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/loginController');
 
-router.get('/login', controller.loginPage);
+router.get('/', controller.loginPage);
 
-router.post('/login', controller.login);
+router.post('/', controller.login);
+
+router.get('/logout', controller.logout)
 
 module.exports = router;

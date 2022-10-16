@@ -5,7 +5,11 @@ const model = require('../models/userAuthModel');
 
 module.exports = {
     signupPage: (req, res) => {
-        res.render('signup');
+        if (req.session.loggedIn) {
+            res.redirect('/home');
+        } else {
+            res.render('signup');
+        }
     },
     signup: (req, res) => {
         console.log('---------------------------------reached signupController.js----------------------------');

@@ -1,5 +1,7 @@
 module.exports = {
     home: (req, res) => {
-        res.render('home');
+        let user = req.session.user;
+        console.log(user);
+        res.render('home',{user});
     }
 }

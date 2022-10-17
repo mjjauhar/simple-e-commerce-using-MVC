@@ -19,7 +19,7 @@ const signupRoute = require('./routes/signup');
 // this is required for collecting data from form input and store it in database 
 app.use(express.urlencoded({ extended: false }));
 
-app.use(express.static(path.resolve(__dirname, 'public')));
+app.use(express.static(path.resolve(__dirname+'/public')));
 
 app.use(session({ secret: 'key', cookie: { maxAge: 1200000 } }));
 

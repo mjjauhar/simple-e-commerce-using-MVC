@@ -10,12 +10,12 @@ module.exports = {
         } else {
             res.render('signup');
         }
-    },
+},
     signup: (req, res) => {
         console.log('---------------------------------reached signupController.js----------------------------');
         console.log(req.body);
 
-        model.doSignup(req.body).then((response) =>{
+        model.doSignup(req.body).then((response) => {
             console.log(response);
             res.redirect('/home');
         })

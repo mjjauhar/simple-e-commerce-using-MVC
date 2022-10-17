@@ -1,5 +1,9 @@
 module.exports = {
     admin: (req, res) => {
-        res.render('admin');
+        if (req.session.adminlogin) {
+            res.render('admin');
+        }else{
+            res.redirect('/');
+        }
     }
 }

@@ -8,7 +8,7 @@ module.exports = {
         if (req.session.loggedIn) {
             res.redirect('/home');
         } else {
-            res.render('login');
+            res.render('login',{loginErr:req.session.loginError});
         }
     },
     login: (req, res) => {
@@ -18,6 +18,7 @@ module.exports = {
                 req.session.user = response.user;
                 res.redirect('/home');
             } else {
+                req.session.loginError="Invalid email or password";
                 res.redirect('/');
             }
         })

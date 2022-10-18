@@ -25,38 +25,30 @@
     </div>
   </div>
 </nav>
-
-<div class="container">
-  <a href="/admin/add-product" class="btn btn-dark my-4">Add new product</a>
-    <a href="/admin/users" class="btn btn-dark my-4">Users</a>
-  <table class="table">
-    <thead>
-      <tr class="text-light bg-secondary">
-        <th scope="col"></th>
-        <th scope="col">Title</th>
-        <th scope="col">Category</th>
-        <th scope="col">Description</th>
-        <th scope="col">Price</th>
-        <th scope="col">Image</th>
-        <th scope="col">Options</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each products}}
-      <tr>
-        <th scope="row"></th>
-        <td class="fw-bold">{{this.Name}}</td>
-        <td>{{this.Category}}</td>
-        <td>{{this.Description}}</td>
-        <td>{{this.Price}}</td>
-        <td><img src="http://localhost:3005/{{this._id}}.jpg" alt="" style="width:50px;height:50px;"></td>
-        <td>
-          <a href="/admin/edit-product/{{this._id}}" class="btn btn-primary m-1">Edit</a>
-          <a href="/admin/delete-product/{{this._id}}" class="btn btn-danger m-1"
-            onclick="return confirm('Are you sure to delete {{this.Name}}')">Delete</a>
-        </td>
-      </tr>
-      {{/each}}
-    </tbody>
-  </table>
+<div class="container m-5">
+    <a href="/admin" class="btn btn-secondary mb-5">Back to Products</a>
+    <a href="/signup" class="btn btn-dark mb-5">Add new User</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each users}}
+            <tr>
+                <th scope="row"></th>
+                <td>{{this.name}}</td>
+                <td>{{this.email}}</td>
+                <td>
+                    <a href="/admin/edit-user/{{this._id}}" class="btn btn-primary m-1">Edit</a>
+                    <a href="/admin/delete-user/{{this._id}}" class="btn btn-danger m-1"
+                        onclick="return confirm('Are you sure to delete {{this.Name}}')">Delete</a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
 </div>

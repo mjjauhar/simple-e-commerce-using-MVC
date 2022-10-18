@@ -2,6 +2,7 @@ const { response } = require('../app');
 const express = require('express');
 const app = express.Router();
 const model = require('../models/userAuthModel');
+const loginController = require('./loginController');
 
 module.exports = {
     signupPage: (req, res) => {

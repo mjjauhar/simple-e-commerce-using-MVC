@@ -1,8 +1,8 @@
 const products = require("../models/productsmodel");
+const model = require("../models/userAuthModel");
 const { response } = require('../app');
 const express = require('express');
 const app = express.Router();
-const model = require('../models/userAuthModel');
 
 module.exports = {
     admin: (req, res) => {
@@ -14,7 +14,7 @@ module.exports = {
             res.redirect('/');
         }
     },
-    delete: (req, res) => {
+    deleteProd: (req, res) => {
         let proId = req.params.id
         console.log(proId);
         products.deleteProduct(proId).then((response) => {
@@ -28,7 +28,7 @@ module.exports = {
             res.redirect('/');
         }
     },
-    add: (req, res) => {
+    addProd: (req, res) => {
 
         console.log('reached here at post add product');
         console.log(req.body);
@@ -48,7 +48,7 @@ module.exports = {
             });
         });
     },
-    showEditInfo: async (req, res) => {
+    showProdEditInfo: async (req, res) => {
         if (req.session.adminlogin) {
             let product = await products.getProductDetails(req.params.id);
             console.log(product);
@@ -57,14 +57,45 @@ module.exports = {
             res.redirect('/');
         }
     },
-    edit: (req, res) => {
+    editProd: (req, res) => {
         let id = req.params.id;
         products.updateProduct(id, req.body).then(() => {
             res.redirect('/admin');
-            if (req.files.Image) {
+            if (req.files) {
                 let image = req.files.Image;
                 image.mv('/home/majr/Programming/Project01/public/' + id + '.jpg');
             }
+        })
+    },
+    user: (req, res) => {
+        if (req.session.adminlogin) {
+            products.getAllUsers().then((users) => {
+                res.render('users', { users });
+            })
+        } else {
+            res.redirect('/');
+        }
+    },
+    showUserEditInfo: async (req, res) => {
+        if (req.session.adminlogin) {
+            let user = await products.getUserDetails(req.params.id);
+            console.log(user);
+            res.render('edit-user', { user });
+        } else {
+            res.redirect('/');
+        }
+    },
+    editUser: (req, res) => {
+        let id = req.params.id;
+        products.updateUser(id, req.body).then(() => {
+            res.redirect('/admin/users');
+        })
+    },
+    deleteUser: (req, res) => {
+        let userId = req.params.id
+        console.log(userId);
+        products.deleteUser(userId).then((response) => {
+            res.redirect('/admin/users');
         })
     }
 }

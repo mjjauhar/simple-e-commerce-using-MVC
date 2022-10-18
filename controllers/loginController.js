@@ -15,7 +15,7 @@ module.exports = {
     },
     login: (req, res) => {
         let email = 'admin@mail.com';
-        let password = '1234';
+        let password = 'admin';
         if (req.body.password === password && req.body.email === email) {
             req.session.adminlogin = true;
             res.redirect('/admin');

@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Admin</a>
+    <a class="navbar-brand" href="#">Admin Panel</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -8,16 +8,19 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" aria-current="page" href="admin/products">All Products</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <a class="nav-link active" href="#">All Orders</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="#">All Users</a>
         </li>
       </ul>
       <div class="nav-item">
-          <big>Logged in as Admin </big>
-          <big><a href="/logout" class="text-decoration-none btn btn-secondary">Logout</a></big>
-        </div>
+        <big>Logged in as Admin </big>
+        <big><a href="/logout" class="text-decoration-none btn btn-secondary">Logout</a></big>
+      </div>
       {{!-- <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
@@ -27,26 +30,35 @@
 </nav>
 
 <div class="container">
+  <a href="/admin/add-product" class="btn btn-secondary my-4">Add new product</a>
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
-        <th scope="col"></th>
-        <th scope="col"></th>
+        <th scope="col">No</th>
+        <th scope="col">Title</th>
+        <th scope="col">Category</th>
+        <th scope="col">Description</th>
+        <th scope="col">Price</th>
+        <th scope="col">Image</th>
+        <th scope="col">Options</th>
       </tr>
     </thead>
     <tbody>
+      {{#each products}}
       <tr>
         <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-        <td><a href="/admin/deleteProduct" class="btn btn-danger">Delete</a></td>
-        <td><a href="/admin/deleteProduct" class="btn btn-primary">Edit</a></td>
+        <td>{{this.Name}}</td>
+        <td>{{this.Category}}</td>
+        <td>{{this.Description}}</td>
+        <td>{{this.Price}}</td>
+        <td><img src="http://localhost:3005/{{this._id}}.jpg" alt="" style="width:50px;height:50px;"></td>
+        <td>
+          <a href="/admin/edit-product/{{this._id}}" class="btn btn-primary">Edit</a>
+          <a href="/admin/delete-product/{{this._id}}" class="btn btn-danger"
+            onclick="return confirm('Are you sure to delete {{this.Name}}')">Delete</a>
+        </td>
       </tr>
+      {{/each}}
     </tbody>
   </table>
 </div>

@@ -11,3 +11,5 @@ Used hbs as view engine.
 Using MVC instead of Express-generator.
 
 My code is not perfect, any suggestions are highly appreciated.
+
+Don't forget to run `npm install`.

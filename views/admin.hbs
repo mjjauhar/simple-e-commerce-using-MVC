@@ -18,18 +18,14 @@
         <big>Logged in as Admin </big>
         <big><a href="/logout" class="text-decoration-none btn btn-secondary">Logout</a></big>
       </div>
-      {{!-- <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form> --}}
     </div>
   </div>
 </nav>
 
 <div class="container">
   <a href="/admin/add-product" class="btn btn-dark my-4">Add new product</a>
-    <a href="/admin/users" class="btn btn-dark my-4">Users</a>
-  <table class="table">
+  <a href="/admin/users" class="btn btn-dark my-4">Users</a>
+  <table class="table" id="productsTable">
     <thead>
       <tr class="text-light bg-secondary">
         <th scope="col"></th>
@@ -60,3 +56,9 @@
     </tbody>
   </table>
 </div>
+
+{{!-- <script>
+  $(function () {
+    $('#productsTable').DataTable();
+  });
+</script> --}}
